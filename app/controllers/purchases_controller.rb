@@ -11,7 +11,7 @@ class PurchasesController < ApplicationController
       Purchase.create(user_id: 1, candle_id: purchase[:id])
     end
 
-    byebug
+    
   end
 
 end

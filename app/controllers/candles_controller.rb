@@ -5,4 +5,6 @@ class CandlesController < ApplicationController
     render json: candles, except: [:created_at, :updated_at]
   end
 
+  
+
 end
