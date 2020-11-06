@@ -12,7 +12,6 @@ class Api::V1::PurchasesController < ApplicationController
 
     params[:candle].each do |purchase| 
       Purchase.create(user_id: current_user[:id], candle_id: purchase[:id])
-      byebug
     end
 
     
