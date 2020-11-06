@@ -1,8 +1,8 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only [:create]
+  skip_before_action :authorized, only: [:create]
 
   def profile
-    current_user = User.find(params[:id])
+    # current_user = User.find(params[:id])
     render json: {user: current_user, except: [:created_at, :updated_at]}
   end
 

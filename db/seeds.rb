@@ -8,6 +8,10 @@
 
 
 require 'faker'
+User.destroy_all
+Candle.destroy_all
+Purchase.destroy_all
+
 
 user1 = User.create(username: 'test', password: 'test')
 
