@@ -1,4 +1,6 @@
 class Api::V1::PurchasesController < ApplicationController
+  skip_before_action :authorized
+  
 
   def index
     purchases = Purchase.all
@@ -6,9 +8,11 @@ class Api::V1::PurchasesController < ApplicationController
   end
 
   def create
+    current_user = User.find(params[:user])
 
     params[:candle].each do |purchase| 
-      Purchase.create(user_id: 1, candle_id: purchase[:id])
+      Purchase.create(user_id: current_user[:id], candle_id: purchase[:id])
+      byebug
     end
 
     
