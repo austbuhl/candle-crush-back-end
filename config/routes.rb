@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   post '/purchases', to: 'purchases#create'
   get '/purchases', to: 'purchases#index'
-  get '/login', to: 'auth#create'
+  post '/login', to: 'auth#create'
+
     end
   end
 

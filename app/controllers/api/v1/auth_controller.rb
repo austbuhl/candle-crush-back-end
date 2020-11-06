@@ -2,9 +2,10 @@ class Api::V1::AuthController < ApplicationController
     skip_before_action :authorized, only: [:create]
     
     def create 
-        user = User.find_by (username: login_params[:username])
+        user = User.find_by(username: params[:username])
+        
 
-        if user && user.authenticate(login_params[:password])
+        if user && user.authenticate(params[:password])
             token = encode_token({user_id: user.id})
             render json: {user: user, jwt: token}
         else
@@ -14,8 +15,8 @@ class Api::V1::AuthController < ApplicationController
 
     private 
     
-    def login_params
-        params.require(:user).permit(:username, :password)
-    end
+    # def login_params
+    #     params.require(:user).permit(:username, :password)
+    # end
 
 end
