@@ -1,4 +1,4 @@
-class CandlesController < ApplicationController
+class Api::V1::CandlesController < ApplicationController
 
   def index
     candles = Candle.all
