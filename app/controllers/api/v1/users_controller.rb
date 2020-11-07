@@ -3,12 +3,11 @@ class Api::V1::UsersController < ApplicationController
 
   def profile
     # current_user = User.find(params[:id])
-    render json: {user: current_user, except: [:created_at, :updated_at]}
+    render json: {user: current_user, purchases: current_user.candles}, except: [:created_at, :updated_at, :password_digest]
   end
 
   def create
     user = User.create(user_params)
-    byebug
     if user.valid?
       token = encode_token(user_id: user.id)
       render json: {user: user, jwt: token} 
