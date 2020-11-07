@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/candles', to: 'candles#index'
   get '/users', to: 'users#profile'
+  post '/users', to: 'users#create'
 
   post '/purchases', to: 'purchases#create'
   get '/purchases', to: 'purchases#index'

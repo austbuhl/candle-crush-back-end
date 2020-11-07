@@ -8,6 +8,7 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     user = User.create(user_params)
+    byebug
     if user.valid?
       token = encode_token(user_id: user.id)
       render json: {user: user, jwt: token} 
@@ -33,7 +34,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :user_type)
   end
 
 end
