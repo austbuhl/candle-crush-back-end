@@ -11,7 +11,8 @@ require 'faker'
 User.destroy_all
 Candle.destroy_all
 Purchase.destroy_all
-
+Review.destroy_all
+Scent.destroy_all
 
 user1 = User.create(username: 'test', password: 'test')
 
@@ -24,14 +25,17 @@ candles = [
 ]
 
 20.times do 
-  Candle.create(name: Faker::Hipster.word, price: rand(100.00), quantity:100, starting_inv:100, image: candles.sample ,description: Faker::Hipster.paragraph, scent: Faker::Hipster.word)
+  Candle.create(name: Faker::Hipster.word, price: rand(100.00), quantity:100, starting_inv:100, image: candles.sample ,description: Faker::Hipster.paragraph)
 end
 
 5.times do 
   Purchase.create(user_id: user1.id, candle_id: Candle.all.sample.id)
 end
 
-5.times do 
+100.times do 
   Review.create(review: Faker::Hipster.word, rating: rand(5.0), user_id: User.all.sample.id, candle_id: Candle.all.sample.id)
+end
 
+100.times do 
+  Scent.create(candle_id: Candle.all.sample.id, scent: Faker::Hipster.word)
 end

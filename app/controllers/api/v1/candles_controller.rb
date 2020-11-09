@@ -3,7 +3,10 @@ class Api::V1::CandlesController < ApplicationController
 
   def index
     candles = Candle.all
-    render json: candles, except: [:created_at, :updated_at]
+    render json: candles.to_json(:include => 
+      {:scents => {:only => [:scent]}}
+    ), 
+    except: [:created_at, :updated_at]
   end
 
   def create
@@ -15,18 +18,23 @@ class Api::V1::CandlesController < ApplicationController
     candle = Candle.find(params[:id])
     # reviews = Reviews.(candle_id: params[:candle_id])
     # reviews = candle.reviews
-    render json: candle.to_json(:include => {
-      :reviews => {:only => [:review, :rating], :include => {:user => {:only => [:username]}
-  
-    }}})
 
+    # reviews = {:reviews => {:only => [:review, :rating], :include => {:user => {:only => [:username]}}}}
+    # scents = {:scents => {:only => [:scent]}}
+
+    # render json: candle.to_json(:include => {:reviews => reviews, :scents => scents})
+
+    render json: candle.as_json(:include => {
+      :reviews => {:only => [:review, :rating], :include => {:user => {:only => [:username]}}},
+      :scents => {:only => [:scent]}
+    })
 
   end
 
   private
 
   def candle_params
-    params.require(:candle).permit(:name, :description, :scent, :price, :image)
+    params.require(:candle).permit(:name, :description, :price, :image, :scent)
   end
 
 end
