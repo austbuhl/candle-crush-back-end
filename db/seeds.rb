@@ -30,3 +30,8 @@ end
 5.times do 
   Purchase.create(user_id: user1.id, candle_id: Candle.all.sample.id)
 end
+
+5.times do 
+  Review.create(review: Faker::Hipster.word, rating: rand(5.0), user_id: User.all.sample.id, candle_id: Candle.all.sample.id)
+
+end

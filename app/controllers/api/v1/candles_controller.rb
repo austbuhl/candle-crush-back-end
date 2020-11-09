@@ -11,6 +11,18 @@ class Api::V1::CandlesController < ApplicationController
     render json: candle, except: [:created_at, :updated_at]
   end
 
+  def show
+    candle = Candle.find(params[:id])
+    # reviews = Reviews.(candle_id: params[:candle_id])
+    # reviews = candle.reviews
+    render json: candle.to_json(:include => {
+      :reviews => {:only => [:review, :rating], :include => {:user => {:only => [:username]}
+  
+    }}})
+
+
+  end
+
   private
 
   def candle_params

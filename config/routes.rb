@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do 
-
+      
+      get '/candles/:id', to: 'candles#show'
       get '/candles', to: 'candles#index'
       get '/users', to: 'users#profile'
       post '/users', to: 'users#create'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
 
       post '/candles', to: 'candles#create'
+
 
     end
   end
