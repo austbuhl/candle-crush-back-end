@@ -24,7 +24,7 @@ candles = [
 ]
 
 20.times do 
-  Candle.create(name: Faker::Hipster.word, price: rand(100.00), image: candles.sample ,description: Faker::Hipster.paragraph, scent: Faker::Hipster.word)
+  Candle.create(name: Faker::Hipster.word, price: rand(100.00), quantity:100, starting_inv:100, image: candles.sample ,description: Faker::Hipster.paragraph, scent: Faker::Hipster.word)
 end
 
 5.times do 
