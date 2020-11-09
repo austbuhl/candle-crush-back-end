@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       post '/candles', to: 'candles#create'
       post '/reviews', to: 'reviews#create'
 
+      delete '/purchases/:id', to: 'purchases#destroy'
+
     end
   end
 

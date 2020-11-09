@@ -4,4 +4,12 @@ class Candle < ApplicationRecord
   has_many :users, through: :reviews
     
   has_many :users, through: :purchases
+  
+  def purchase_candle
+    self.quantity -= 1
+  end
+
+  def return_candle
+    self.quantity += 1
+  end
 end

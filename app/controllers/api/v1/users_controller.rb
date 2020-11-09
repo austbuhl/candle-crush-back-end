@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def profile
     # current_user = User.find(params[:id])
-    render json: {user: current_user, purchases: current_user.candles}, except: [:created_at, :updated_at, :password_digest]
+    render json: {user: current_user, purchases: current_user.candles}, except: [:updated_at, :password_digest]
   end
 
   def create
