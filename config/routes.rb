@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
 
       post '/candles', to: 'candles#create'
-
+      post '/reviews', to: 'reviews#create'
 
     end
   end
