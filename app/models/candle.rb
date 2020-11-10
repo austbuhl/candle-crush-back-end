@@ -15,4 +15,10 @@ class Candle < ApplicationRecord
   def return_candle
     self.quantity += 1
   end
+
+  def all_candle_scents
+    self.scents.map {|scent| scent.scent}
+    
+  
+  end
 end
