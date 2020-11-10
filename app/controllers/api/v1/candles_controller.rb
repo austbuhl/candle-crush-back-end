@@ -3,10 +3,25 @@ class Api::V1::CandlesController < ApplicationController
 
   def index
     candles = Candle.all
-    render json: candles.to_json(:include => 
-      {:scents => {:only => [:scent]}}
-    ), 
-    except: [:created_at, :updated_at]
+    
+    full_response = candles.map do |candle|
+      candle = {
+        id: candle.id,
+        name: candle.name,
+        description: candle.description,
+        price: candle.price,
+        image: candle.image,
+        quantity: candle.quantity,
+        starting_inv: candle.starting_inv,
+        scents: candle.all_candle_scents
+      }
+    end
+    
+    render json: full_response
+    
+
+  #   render json: candles.to_json(:include => scents), 
+  #   except: [:created_at, :updated_at]
   end
 
   def create
