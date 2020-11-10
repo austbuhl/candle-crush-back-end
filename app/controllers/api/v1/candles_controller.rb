@@ -3,49 +3,19 @@ class Api::V1::CandlesController < ApplicationController
 
   def index
     candles = Candle.all
-    
-    full_response = candles.map do |candle|
-      candle = {
-        id: candle.id,
-        name: candle.name,
-        description: candle.description,
-        price: candle.price,
-        image: candle.image,
-        quantity: candle.quantity,
-        starting_inv: candle.starting_inv,
-        scents: candle.all_candle_scents
-      }
-    end
-    
-    render json: full_response
-    
-
-  #   render json: candles.to_json(:include => scents), 
-  #   except: [:created_at, :updated_at]
+    render json: candles
+    # render jsonapi: candles, serializer: CandleSerializer
   end
 
   def create
     candle = Candle.create(candle_params)
-    render json: candle, except: [:created_at, :updated_at]
     scent = Scent.create(candle_id: candle[:id], scent: params[:candle][:scent])
-    byebug
+    render json: candle
   end
 
   def show
     candle = Candle.find(params[:id])
-    # reviews = Reviews.(candle_id: params[:candle_id])
-    # reviews = candle.reviews
-
-    # reviews = {:reviews => {:only => [:review, :rating], :include => {:user => {:only => [:username]}}}}
-    # scents = {:scents => {:only => [:scent]}}
-
-    # render json: candle.to_json(:include => {:reviews => reviews, :scents => scents})
-
-    render json: candle.as_json(:include => {
-      :reviews => {:only => [:review, :rating], :include => {:user => {:only => [:username]}}},
-      :scents => {:only => [:scent]}
-    })
-
+    render json: candle
   end
 
   private

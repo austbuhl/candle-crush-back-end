@@ -1,5 +1,4 @@
 class Candle < ApplicationRecord
-  include ActiveModel::Serializers::JSON
 
   has_many :reviews
   has_many :purchases
@@ -18,7 +17,5 @@ class Candle < ApplicationRecord
 
   def all_candle_scents
     self.scents.map {|scent| scent.scent}
-    
-  
   end
 end

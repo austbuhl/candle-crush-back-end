@@ -26,8 +26,6 @@ class Api::V1::UsersController < ApplicationController
   def edit
     user = User.find_by(id: params[:id])
     user.update(user_params)
-
-  
   end
 
   private
