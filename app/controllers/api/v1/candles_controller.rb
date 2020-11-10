@@ -12,6 +12,8 @@ class Api::V1::CandlesController < ApplicationController
   def create
     candle = Candle.create(candle_params)
     render json: candle, except: [:created_at, :updated_at]
+    scent = Scent.create(candle_id: candle[:id], scent: params[:candle][:scent])
+    byebug
   end
 
   def show
@@ -34,7 +36,7 @@ class Api::V1::CandlesController < ApplicationController
   private
 
   def candle_params
-    params.require(:candle).permit(:name, :description, :price, :image, :scent)
+    params.require(:candle).permit(:name, :description, :price, :image, :quantity, :starting_inv)
   end
 
 end
