@@ -23,18 +23,8 @@ class Api::V1::PurchasesController < ApplicationController
     candle = Candle.find(purchase.candle_id)
     candle.return_candle
     candle.save
-
-    
-    
     purchase.destroy
     render json: purchase
-
-
-
-
   end
-      
-      
-      
 
 end
